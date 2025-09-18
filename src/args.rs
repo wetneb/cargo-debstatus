@@ -2,6 +2,8 @@ use clap::{ArgAction, Parser};
 use std::path::PathBuf;
 use std::str::FromStr;
 
+use crate::filter::DependencyFilter;
+
 #[derive(Parser)]
 #[clap(bin_name = "cargo")]
 pub enum Opts {
@@ -39,6 +41,9 @@ pub struct Args {
     #[clap(long = "no-dev-dependencies")]
     /// Skip dev dependencies.
     pub no_dev_dependencies: bool,
+    #[clap(long = "filter", default_value_t=DependencyFilter::All)]
+    /// Filter dependencies based on their debian availability
+    pub filter: DependencyFilter,
     #[clap(long = "manifest-path", value_name = "PATH")]
     /// Path to Cargo.toml
     pub manifest_path: Option<PathBuf>,

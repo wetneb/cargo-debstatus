@@ -7,6 +7,7 @@ use petgraph::stable_graph::StableGraph;
 use petgraph::visit::Dfs;
 use std::collections::HashMap;
 
+#[derive(Clone)]
 pub struct Graph {
     pub graph: StableGraph<Pkg, DependencyKind>,
     pub nodes: HashMap<PackageId, NodeIndex>,
