@@ -201,8 +201,7 @@ fn print_package<'a, W: Write>(
     writer: &mut W,
 ) -> Result<(), Error> {
     let treeline = {
-        let mut line = "".to_string();
-        line.push_str(&format!(" {} ", &package.packaging_status()));
+        let mut line = format!(" {} ", package.packaging_status());
         match prefix {
             Prefix::Depth => line.push_str(&format!("{}", levels_continue.len())),
             Prefix::Indent => {
