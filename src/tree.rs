@@ -332,10 +332,10 @@ fn print_dependencies<'a, W: Write>(
             symbols,
             prefix,
             config,
-            if config.compact {
-                visited_deps
-            } else {
+            if config.expand {
                 &mut visited_deps_clone
+            } else {
+                visited_deps
             },
             levels_continue,
             writer,
@@ -404,7 +404,7 @@ mod tests {
 
     #[test]
     fn print_tree_with_common_dependency() -> Result<(), Error> {
-        let args = Args::parse_from(["debstatus", "-w"]);
+        let args = Args::parse_from(["debstatus", "-w", "--expand"]);
         let metadata: Metadata = serde_json::from_str(include_str!(
             "../tests/data/cargo_metadata_with_common_dependency.json"
         ))?;
@@ -427,7 +427,7 @@ mod tests {
 
     #[test]
     fn print_compact_tree() -> Result<(), Error> {
-        let args = Args::parse_from(["debstatus", "--compact", "-p", "cargo-test"]);
+        let args = Args::parse_from(["debstatus", "-p", "cargo-test"]);
         let metadata: Metadata = serde_json::from_str(include_str!(
             "../tests/data/cargo_metadata_with_common_dependency.json"
         ))?;

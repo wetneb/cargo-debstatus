@@ -85,9 +85,9 @@ pub struct Args {
     #[clap(long = "all", short = 'a')]
     /// Show dependencies even for crates that have an exact match in Debian
     pub all: bool,
-    #[clap(long = "compact", short = 'c')]
-    /// Don't repeat the dependencies of crates already displayed earlier
-    pub compact: bool,
+    #[clap(long = "expand", short = 'e')]
+    /// Repeat the dependencies of crates already displayed earlier
+    pub expand: bool,
     #[clap(long = "json")]
     /// Print package information as machine-readable output
     pub json: bool,
